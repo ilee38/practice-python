@@ -85,13 +85,12 @@ class SinglyLinkedList:
     if self._size == 1:             #case were there's only 1 element
       self._head = None
       self._tail = None
-      self._size -= 1
-      return retVal
-    item = self._head
-    for i in range(self._size - 1):   #traverse the list to find the second to last item
-      item = item.get_next()          #and set it as the new tail
-    item.set_next(None)
-    self._tail = item
+    else:
+      item = self._head
+      for i in range(self._size - 1):   #traverse the list to find the second to last item
+        item = item.get_next()          #and set it as the new tail
+      item.set_next(None)
+      self._tail = item
     self._size -= 1
     return retVal
 
@@ -114,10 +113,11 @@ class SinglyLinkedList:
       raise IndexError('Invalid index')
     if index == 0:
       self.push_front(val)
-      return
-    newNode = ListNode(val, None)
-    item = self._head
-    for i in range(index - 1):    #traverse list to find item at index - 1
-      item = item.get_next()
-    newNode.set_next(item.get_next())
-    item.set_next(newNode)
+    else:
+      newNode = ListNode(val, None)
+      item = self._head
+      for i in range(index - 1):    #traverse list to find item at index - 1
+        item = item.get_next()
+      newNode.set_next(item.get_next())
+      item.set_next(newNode)
+    self._size += 1
