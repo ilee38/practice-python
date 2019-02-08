@@ -2,7 +2,7 @@
 
 """
 # Definition of SinglyLinkedList class. This list keeps track of the
-# tail pointer.
+# tail pointer and the size of the list.
 """
 from ListNode import ListNode
 
@@ -121,3 +121,21 @@ class SinglyLinkedList:
       newNode.set_next(item.get_next())
       item.set_next(newNode)
     self._size += 1
+
+
+  # Removes node at given index
+  def erase(self, index):
+    if self._size == 0:
+      raise ValueError('List is empty')
+    elif index >= self._size or index < 0:
+      raise IndexError('Invalid index')
+    if index == 0:
+      self.pop_front()                #special cases where items are the head or the
+    elif index == self._size - 1:     #tail of the list
+      self.pop_back()
+    else:
+      item = self._head
+      for i in range(index - 1):      #traverse list to get node at index-1
+        item = item.get_next()
+      toDelete = item.get_next()
+      item.set_next(toDelete.get_next())  #update next pointer of the element at index-1
