@@ -139,3 +139,4 @@ class SinglyLinkedList:
         item = item.get_next()
       toDelete = item.get_next()
       item.set_next(toDelete.get_next())  #update next pointer of the element at index-1
+    self._size -= 1
