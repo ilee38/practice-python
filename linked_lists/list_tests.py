@@ -39,5 +39,6 @@ if __name__ == '__main__':
   ll.push_front(18)
   print("erasing node at index 1...")
   ll.erase(1)
+  print("new value at index 0: ", ll.value_at(0))
   print("new value at index 1: ", ll.value_at(1))
   print("new size: ", ll.size())

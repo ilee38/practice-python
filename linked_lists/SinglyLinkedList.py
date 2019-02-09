@@ -30,14 +30,9 @@ class SinglyLinkedList:
   def value_at(self, index):
     if index >= self._size or index < 0:
       raise IndexError('Invalid index')
-    if index == 0:
-      return self._head.get_value()
-    #elif index == self._size - 1:
-    #  return self._tail.get_value()
-    else:
-      item = self._head
-      for i in range(index):    #traverse the list to find the item
-        item = item.get_next()
+    item = self._head
+    for i in range(index):    #traverse the list to find the item
+      item = item.get_next()
     return item.get_value()
 
 
