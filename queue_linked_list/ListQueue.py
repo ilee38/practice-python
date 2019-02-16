@@ -27,7 +27,7 @@ class ListQueue:
   def dequeue(self):
     if self._size == 0:
       raise ValueError("Queue is empty")
-    retVal = self._head.get_value
+    retVal = self._head.get_value()
     if self._size == 1:             #If only 1 element, set head and tail to None
       self._head = None
       self._tail = None
