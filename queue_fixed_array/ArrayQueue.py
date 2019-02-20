@@ -24,9 +24,10 @@ class ArrayQueue:
   def dequeue(self):
     if self._size == 0:
       raise IndexError("Queue is empty")
-    ret_val = self._data[0]             #return value from the front of the array
+    ret_val = self._data[0]              #return value from the front of the array
     for i in range(1, self._size):       #move elements up the queue by 1 position
       self._data[i-1] = self._data[i]
+    self._data[self._size] = None        #after the loop, the last index remains the same, so set it to None afterward
     self._size -= 1
     return ret_val
 
