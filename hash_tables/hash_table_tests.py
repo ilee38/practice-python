@@ -5,7 +5,8 @@ from hash_table import HashTable
 if __name__ == '__main__':
   ht = HashTable()
 
-  print("Initial capacity: ", ht._len())
+  print("Current number of elements: ", ht._n)
+  print("Current table capacity: ", len(ht._table))
   print("Adding (1, one) pair...")
   ht.add(1, "one")
   print("Adding (2, two) pair...")
@@ -38,3 +39,9 @@ if __name__ == '__main__':
   ht.add(10,"ten")
   print("Current number of elements: ", ht._n)
   print("Current table capacity: ", len(ht._table))
+  print("Get value of key 1: ", ht.get(1))
+  print("Get value of key 3: ", ht.get(3))
+  print("Get value of key 4: ", ht.get(4))
+  print("Get value of key 10: ", ht.get(10))
+  print("Get value of key 9: ", ht.get(9))
+  print("Get value of key 8: ", ht.get(8))
