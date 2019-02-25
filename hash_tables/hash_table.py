@@ -42,7 +42,7 @@ class HashTable:
     B = [None] * newCap
     elements = []
     for i in range(len(self._table)):
-      if self._table[i] is not None or self._table[i] is not HashTable._AVAIL:
+      if self._table[i] != None and self._table[i] != HashTable._AVAIL:
         elements.append(self._table[i])
     for e in elements:
       newIndex = self._hash(e.get_key(), newCap)
@@ -67,7 +67,7 @@ class HashTable:
           availableIdx = index        #we only update it if it hasn't been assigned
         if self._table[index] is None:
           return (False, index)
-      elif self._table[index].get_key == key:
+      elif self._table[index].get_key() == key:
         return (True, index)
       index = (index + 1) % len(self._table)  #keep looking to next index.
 
@@ -86,7 +86,7 @@ class HashTable:
     found, index = self._find_slot(i, k)
     if found:
       self._table[index].set_value(v)
-      newItem = None
+      #newItem = None
     else:
       self._table[index] = newItem
       self._n += 1.0
