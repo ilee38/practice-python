@@ -45,3 +45,6 @@ if __name__ == '__main__':
   print("Get value of key 10: ", ht.get(10))
   print("Get value of key 9: ", ht.get(9))
   print("Get value of key 8: ", ht.get(8))
+  print("Updating value of element with key 9...")
+  ht.add(9,"NINE")
+  print("Get value of key 9: ", ht.get(9))
