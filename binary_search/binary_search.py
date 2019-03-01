@@ -1,6 +1,7 @@
 """
 # Implementation of a recursive binary search algorithm
-# Returns the index of the target element in a sorted array
+# Returns the index of the target element in a sorted array,
+# an index value of -1 indicates the target elemen was not found
 """
 def binarySearch(arr, target, low, high):
   mid = (low + high) // 2
@@ -28,6 +29,8 @@ if __name__ == '__main__':
   print("index of 1: ", targetIndex)
   targetIndex = binarySearch(myArr2, 389, 0, len(myArr2)-1)
   print("index of 389: ", targetIndex)
+  targetIndex = binarySearch(myArr2, 500, 0, len(myArr2)-1)
+  print("index of 500 (not in the array): ", targetIndex)
 
 
 
