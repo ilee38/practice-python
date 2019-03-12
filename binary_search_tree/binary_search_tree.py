@@ -19,9 +19,28 @@ class BinarySearchTree:
   def __init__(self):
     self._root = None
 
-  def insert(self, value):
 
+  def insert(self, node, value):
+    if node == None:
+      node = Node(value)
+      return node
+    if value < node._data:
+      node._left = self.insert(node._left, value)
+    elif value > node._data:
+      node._right = self.insert(node._right, value)
+    return node
+
+
+  ##
+  # Prints sorted values, with DFS in-order traversal
+  #
   def printValues(self, root):
+    if root == None:
+      return
+    self.printValues(root._left)
+    print(root._data, " ")
+    self.printValues(root._right)
+
 
   def deleteTree(self, root):
 
