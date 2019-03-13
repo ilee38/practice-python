@@ -23,7 +23,7 @@ class BinarySearchTree:
 
 
   def insert(self, node, value):
-    if node == None:
+    if node is None:
       node = self.Node(value)
       return node
     if value < node._data:
@@ -37,7 +37,7 @@ class BinarySearchTree:
     """
     Prints sorted values, with DFS in-order traversal
     """
-    if root == None:
+    if root is None:
       return
     self.printValues(root._left)
     print(root._data, " ")
@@ -45,17 +45,17 @@ class BinarySearchTree:
 
 
   def deleteTree(self, root):
-    if root == None:
-      return
-    if root._left != None:
+    if root is None:
+      return root
+    if root._left is not None:
       self.deleteTree(root._left)
-    elif root._right != None:
+    elif root._right is not None:
       self.deleteTree(root._right)
     root = None
 
 
   def isInTree(self, node, value):
-    if node == None:
+    if node is None:
       return False
     if value == node._data:
       return True
@@ -70,28 +70,49 @@ class BinarySearchTree:
     Returns the height of a node, defined as the number of edges on the longest
     path from the specified node to a leaf node. Single node height is 1.
     """
-    if node == None:
+    if node is None:
       return -1       #return -1 because we're counting edges, not nodes.
     heightLeftTree = self.getHeight(node._left)
     heightRightTree = self.getHeight(node._right)
     return max(heightLeftTree, heightRightTree) + 1   #add 1 because we're counting edges
 
 
-  def getMin(self, root):
-    if root == None:
+  def _getMin(self, root):
+    """
+    Returns the node w/ the minimum value in the data field
+    """
+    if root is None:
       raise ValueError("Error: tree is empty")
-    if root._left == None:
-      return root._data
-    return self.getMin(root._left)
+    if root._left is None:
+      return root
+    return self._getMin(root._left)
+
+
+  def getMin(self, root):
+    """
+    Public getMin method: wraps the private _getMin method
+    to return only the value of the data field
+    """
+    return self._getMin(root)._data
+
+
+  def _getMax(self, root):
+    """
+    Returns the node w/ the maximum value in the data field
+    """
+    if root is None:
+      raise ValueError("Error: tree is empty")
+    if root._right is None:
+      return root
+    return self._getMax(root._right)
 
 
   def getMax(self, root):
-    if root == None:
-      raise ValueError("Error: tree is empty")
-    if root._right == None:
-      return root._data
-    return self.getMax(root._right)
-
+    """
+    Public getMax method: wraps the private _getMax method
+    to return only the value of the data field
+    """
+    return self._getMax(root)._data
 
   def _isBinarySearchTree(self, root, Q):
     """
@@ -100,12 +121,12 @@ class BinarySearchTree:
     stops as soon as a value does not meet the properties of a BST and returns false.
     We use a queue (using a deque container datatype) to traverse the tree.
     """
-    if root._left != None:
+    if root._left is not None:
       if root._data > root._left._data:
         Q.append(root._left)
       else:
         return False
-    if root._right != None:
+    if root._right is not None:
       if root._data < root._right._data:
         Q.append(root._right)
       else:
@@ -121,7 +142,7 @@ class BinarySearchTree:
     Calls private function _isBinarySearchTree to determine if
     the tree is a valid BST.
     """
-    if root == None:
+    if root is None:
       raise ValueError("Error: tree is empty")
     Q = deque()
     return self._isBinarySearchTree(root, Q)
@@ -133,7 +154,7 @@ class BinarySearchTree:
     #find the target node
     if value < node._data:
       node._left = self.deleteValue(node._left, value)
-    if value > node._data:
+    elif value > node._data:
       node._right = self.deleteValue(node._right, value)
     else:     #value has been found!
       #case 1: node has no children
@@ -153,7 +174,7 @@ class BinarySearchTree:
              duplicated node (i.e. the predecessor). Start from the target node's left
              child, looking for the duplicate value of the data.
         """
-        predecessor = self.getMax(node._left)
+        predecessor = self._getMax(node._left)
         node._data = predecessor._data
         node._left = self.deleteValue(node._left, predecessor._data)
     return node
@@ -165,19 +186,19 @@ class BinarySearchTree:
     Otherwise, we need to find the deepest ancestor of which this node is on its left sub-tree
     """
     if root is None or (root._left is None and root._right is None):
-      return None
+      return root
     #find given node
     current = root
-    while root is not None:
-      if value == root._data:
+    while current is not None:
+      if value == current._data:
         break
-      if value < root._data:
-        current = root._left
-      elif value > root._data:
-        current = root._right
+      elif value < current._data:
+        current = current._left
+      elif value > current._data:
+        current = current._right
     #case 1: node has a right sub-tree
     if current._right is not None:
-      return self.getMin(current._right)
+      return self._getMin(current._right)
     #case 2: node has no right sub-tree
     else:
       successor = None
