@@ -198,7 +198,7 @@ class BinarySearchTree:
         current = current._right
     #case 1: node has a right sub-tree
     if current._right is not None:
-      return self._getMin(current._right)
+      return self.getMin(current._right)
     #case 2: node has no right sub-tree
     else:
       successor = None
@@ -209,4 +209,4 @@ class BinarySearchTree:
           ancestor = ancestor._left     #but keep looking on the left sub-tree
         else:
           ancestor = ancestor._right    #the current node was on the right of the ancestor, advance and keep looking left
-      return successor
+      return successor._data

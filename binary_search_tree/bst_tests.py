@@ -56,8 +56,8 @@ if __name__ == "__main__":
   else:
     print("value not found in tree")
 
-  print("Get successor of 25: ", bst.getSuccessor(root, 25)._data)
-  print("Get successor of 17: ", bst.getSuccessor(root, 17)._data)
+  print("Get successor of 25: ", bst.getSuccessor(root, 25))
+  print("Get successor of 17: ", bst.getSuccessor(root, 17))
 
   print("Deleting 6...")
   bst.deleteValue(root, 6)
