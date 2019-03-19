@@ -13,6 +13,13 @@ class PriorityQueue:
       self.key = k
       self.value = val
 
+    def get_key(self):
+      return self.key
+
+    def get_value(self):
+      return self.value
+
+
   def __init__(self, cap):
     self._capacity = cap          #capacity of the array
     self._size = 0                #number of elements in the queue
@@ -123,7 +130,7 @@ class PriorityQueue:
     arr = array of integers
     conut = number of elements in the array
     """
-    for i in range((count-1)/2 - 1, -1, -1):
+    for i in range((count-1)//2 - 1, -1, -1):
       self._int_sift_down(arr, i, count)
 
 
@@ -153,8 +160,8 @@ class PriorityQueue:
     Takes an array of values, a position, and the size of the array (i.e.
     the number of elements in the array)
     """
-    if (2*pos + 1) > size:
-      return
+    #if 2*pos + 1 > size:
+    #  return
     max_pos =  pos
     l_child = 2*pos + 1
     r_child = 2*pos + 2
@@ -166,4 +173,4 @@ class PriorityQueue:
       temp = arr[pos]
       arr[pos] = arr[max_pos]
       arr[max_pos] = temp
-    self._int_sift_down(arr, max_pos, size)
+      self._int_sift_down(arr, max_pos, size)
