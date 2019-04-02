@@ -1,4 +1,4 @@
-# CS Concepts and Skill Practice in Python
+# CS Concepts and Skills Practice in Python
 Implementation of basic data structures and algorithms from scratch to refresh concepts while practicing the language.
 
 ### Disclaimer:
