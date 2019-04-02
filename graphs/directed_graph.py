@@ -2,6 +2,8 @@
 """
 # Directed Graph class using an Adjacency list representation
 """
+from collections import deque
+
 class DirectedGraph:
 
   class Vertex:
@@ -49,5 +51,55 @@ class DirectedGraph:
   def __init__(self):
     self._v_count = 0
     self._e_count = 0
-    self.Adj = []
+    self.Adj = {}     #dictionary mapping vertices to edge lists
+
+
+  def vertex_count(self):
+    return self._v_count
+
+
+  def edge_count(self):
+    return self._e_count
+
+
+  def insert_vertex(self, label):
+    v = self.Vertex(label)
+    self.Adj[v] = []
+    self._v_count += 1
+    return v
+
+
+  def insert_edge(self, u, v, w):
+    e = self.Edge(u, v, w)
+    if u in self.Adj:
+      self.Adj[u].append(e)
+    else:
+      self.Adj[u] = [e]
+    self._e_count += 1
+    return e
+
+
+  def BFS(self, s):
+    """ Performs breadth-first search on the graph, starting from vertex s.
+        Returns a list containing the discovery edges.
+    """
+    Q = deque()     #queue data structure to perform the BFS traversal
+    discover_path = []
+
+    Q.append(s)
+    s.set_discover()
+    while len(Q) > 0:
+      v = Q.popleft()
+      for e in self.Adj[v]:
+        if not e.opposite(v).is_discovered():
+          e.opposite(v).set_discover()
+          Q.append(e.opposite(v))
+          discover_path.append(self.fill_endpoints(e))
+    return discover_path
+
+
+  def fill_endpoints(self, e):
+    u, v = e.endpoints()
+    return (u.get_element(), v.get_element())
+
 
