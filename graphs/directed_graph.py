@@ -8,20 +8,13 @@ class DirectedGraph:
 
   class Vertex:
     """Nested class representing an graph vertex"""
-    __slots__ = 'element', 'discovered'
+    __slots__ = 'element'
 
     def __init__(self, element):
       self.element = element
-      self.discovered = False
 
     def get_element(self):
       return self.element
-
-    def set_discover(self):
-      self.discovered = True
-
-    def is_discovered(self):
-      return self.discovered
 
 
   class Edge:
@@ -113,13 +106,3 @@ class DirectedGraph:
         visited[e.opposite(s).get_element()] = s.get_element()
         self.DFS_visit(visited, e.opposite(s))
     return visited
-
-
-  def fill_endpoints(self, e):
-    """ Returns a tuple containing the element values of the source and
-        destination vertices in an edge e.
-    """
-    u, v = e.endpoints()
-    return (u.get_element(), v.get_element())
-
-
