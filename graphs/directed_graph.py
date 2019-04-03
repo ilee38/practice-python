@@ -81,24 +81,44 @@ class DirectedGraph:
 
   def BFS(self, s):
     """ Performs breadth-first search on the graph, starting from vertex s.
-        Returns a list containing the discovery edges.
+        Returns a dict containing the discovery edges mapped as:
+        {destination : source}
     """
     Q = deque()     #queue data structure to perform the BFS traversal
-    discover_path = []
-
+    discover_path = {}
     Q.append(s)
-    s.set_discover()
     while len(Q) > 0:
       v = Q.popleft()
       for e in self.Adj[v]:
-        if not e.opposite(v).is_discovered():
-          e.opposite(v).set_discover()
+        if e.opposite(v).get_element() not in discover_path:
           Q.append(e.opposite(v))
-          discover_path.append(self.fill_endpoints(e))
+          discover_path[e.opposite(v).get_element()] = v.get_element()
     return discover_path
 
 
+  def DFS(self, s):
+    """ Performs Depth-first search on the graph, starting from vertex s.
+        returns a dict containing the edges in the discovery path as:
+        {destination : source}
+    """
+    visited = {}
+    return self.DFS_visit(visited, s)
+
+
+  def DFS_visit(self, visited, s):
+    """ Performs the recursive depth-first search for the DFS method
+    """
+    for e in self.Adj[s]:
+      if e.opposite(s).get_element() not in visited:
+        visited[e.opposite(s).get_element()] = s.get_element()
+        self.DFS_visit(visited, e.opposite(s))
+    return visited
+
+
   def fill_endpoints(self, e):
+    """ Returns a tuple containing the element values of the source and
+        destination vertices in an edge e.
+    """
     u, v = e.endpoints()
     return (u.get_element(), v.get_element())
 

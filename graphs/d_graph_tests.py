@@ -23,10 +23,15 @@ def main():
   W_Z = DG.insert_edge(W, Z, 0)
   print("Number of vertices: ", DG.vertex_count())
   print("Number of edges: ", DG.edge_count())
+  print("")
 
   bfs_path = DG.BFS(U)
-  print("BFS discovery path: ")
+  print("BFS discovery path {'destination' : 'source'} ")
   print(bfs_path)
+  print("")
+  dfs_path = DG.DFS(U)
+  print("DFS discovery path {'destination' : 'source'} ")
+  print(dfs_path)
 
 if __name__ == '__main__':
   main()
