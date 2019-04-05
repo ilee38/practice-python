@@ -6,14 +6,34 @@
 class Graph:
 
   class Vertex:
-    """Nested class representing an graph vertex"""
-    __slots__ = 'element'
+    """Nested class representing an graph vertex.
+       parameters:
+       element - is a label or name asociated with the vertex
+       d - represents the current distance value during a graph exploration. Initially
+       set to infinity.
+       parent - the parent of the element during the graph exploration
+    """
+    __slots__ = 'element', 'd', 'parent'
 
-    def __init__(self, element):
+    def __init__(self, element, d=float('inf')):
       self.element = element
+      self.d = d
+      self.parent = None
 
     def get_element(self):
       return self.element
+
+    def get_d_val(self):
+      return self.d
+
+    def set_d_val(self, d):
+      self.d = d
+
+    def set_parent(self, p):
+      self.parent = p
+
+    def get_parent(self):
+      return self.parent
 
 
   class Edge:

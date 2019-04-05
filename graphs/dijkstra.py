@@ -1,14 +1,49 @@
 #!/usr/local/bin/python3
 
-import queue
-from graph_adt import Graph
+from priority_queue import *
+from graph_adt import *
 
 def dijkstra(G, s):
+  """ Performs Dijktra's algorithm to find the shortest path from a single source
+      to all other vertices in a weighted graph.
+
+      Parameters:
+      G - Graph represented with an adjacency list mapping the vertices to lists of edges
+      s - source vertex
+
+      Returns:
+      A list of tuples representing the parent child relationships during the
+      discovery paths. I.e. tuple = (parent, child)
+  """
+  q_cap = G.vertex_count() + G.edge_count()    #capacity of the priority queue
+  S = []
+  Q = PriorityQueue(q_cap)
+  s.set_d_val(0)  #initialize source's current distance
+  Q.insert(0, s)
+  while not Q.is_empty() :
+    min_element = Q.extract_min()
+    u = min_element.get_value()
+    if u not in S:
+      S.append(u)
+      for e in G.Adj[u]:
+        priority, v = relax(u, e.opposite(u), e.get_weight())
+        if priority and v:
+          Q.insert(priority, v)
+  return S
+
+
+def relax(u, v, w):
+  if v.get_d_val() >= (u.get_d_val() + w):    #if distances are equal, it's ok to relax
+    v.set_d_val(u.get_d_val() + w)
+    v.set_parent(u)    #make u the parent of v
+    return(v.get_d_val(), v)
+  else:
+    return (None, None)
 
 
 def main():
-  #Create undirected graph instance
-  Gr = Graph()
+  #Create directed graph instance indicated by the boolean parameter
+  Gr = Graph(True)
 
   #Create vertices
   W = Gr.insert_vertex("w")
@@ -24,12 +59,16 @@ def main():
   P_R = Gr.insert_edge(P, R, 15)
   P_B = Gr.insert_edge(P, B, 5)
   Y_R = Gr.insert_edge(Y, R, 4)
-  R_B = Gr.insert_edge(R, B, 13)
+  B_R = Gr.insert_edge(B, R, 13)
 
   print("Number of vertices: ", Gr.vertex_count())
   print("Number of edges: ", Gr.edge_count())
-  print("")
 
+  paths = dijkstra(Gr, W)
+  print("Shortest paths (parent, destination):")
+  for node in paths:
+    parent = node.get_parent().get_element() if node.get_parent() is not None else None
+    print(parent, ", ", node.get_element())
 
 if __name__ == '__main__':
   main()
