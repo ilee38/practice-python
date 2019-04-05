@@ -1,9 +1,14 @@
 #!/usr/local/bin/python3
-"""
-# General graph ADT class using an Adjacency list representation.
-# An undirected or directed graph can be created by seting the type parameter.
-"""
+
 class Graph:
+  """ General graph ADT class using an Adjacency list representation.
+      Either directed or undirected graphs can be created.
+
+      Parameters:
+      directed - boolean value indicating if graph is directed or undirected,
+                 set to False by default.
+  """
+
 
   class Vertex:
     """Nested class representing an graph vertex.

@@ -33,7 +33,18 @@ def dijkstra(G, s):
 
 
 def relax(u, v, w):
-  if v.get_d_val() >= (u.get_d_val() + w):    #if distances are equal, it's ok to relax
+  """ Performs edge relaxation during Dijktra's exploration
+
+      Parameters:
+      u - source node
+      v - destination node
+      w - weight from u to v
+
+      Returns:
+      tuple: (updated weight, v), if relaxation was performed.
+             v is updated with its new parent.
+  """
+  if v.get_d_val() > (u.get_d_val() + w):
     v.set_d_val(u.get_d_val() + w)
     v.set_parent(u)    #make u the parent of v
     return(v.get_d_val(), v)
@@ -42,8 +53,8 @@ def relax(u, v, w):
 
 
 def main():
-  #Create directed graph instance indicated by the boolean parameter
-  Gr = Graph(True)
+  #Instantiate undirected graph
+  Gr = Graph()
 
   #Create vertices
   W = Gr.insert_vertex("w")
@@ -64,7 +75,7 @@ def main():
   print("Number of vertices: ", Gr.vertex_count())
   print("Number of edges: ", Gr.edge_count())
 
-  paths = dijkstra(Gr, W)
+  paths = dijkstra(Gr, R)
   print("Shortest paths (parent, destination):")
   for node in paths:
     parent = node.get_parent().get_element() if node.get_parent() is not None else None
