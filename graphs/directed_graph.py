@@ -95,14 +95,14 @@ class DirectedGraph:
         {destination : source}
     """
     visited = {}
-    return self.DFS_visit(visited, s)
+    return self._DFS_visit(visited, s)
 
 
-  def DFS_visit(self, visited, s):
+  def _DFS_visit(self, visited, s):
     """ Performs the recursive depth-first search for the DFS method
     """
     for e in self.Adj[s]:
       if e.opposite(s).get_element() not in visited:
         visited[e.opposite(s).get_element()] = s.get_element()
-        self.DFS_visit(visited, e.opposite(s))
+        self._DFS_visit(visited, e.opposite(s))
     return visited

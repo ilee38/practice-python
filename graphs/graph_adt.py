@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 
 class Graph:
   """ General graph ADT class using an Adjacency list representation.
