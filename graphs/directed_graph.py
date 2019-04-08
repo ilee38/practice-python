@@ -89,14 +89,17 @@ class DirectedGraph:
     return discover_path
 
 
-  def DFS(self, s):
-    """ Performs Depth-first search on the graph, starting from vertex s.
+  def DFS(self):
+    """ Performs Depth-first search on the graph
         returns a dict containing the edges in the discovery path as:
         {destination : source}
     """
     visited = {}
-    return self._DFS_visit(visited, s)
-
+    for v in self.Adj:
+      if v.get_element() not in visited:
+        visited[v.get_element()] = None
+        self._DFS_visit(visited, v)
+    return visited
 
   def _DFS_visit(self, visited, s):
     """ Performs the recursive depth-first search for the DFS method
@@ -105,4 +108,3 @@ class DirectedGraph:
       if e.opposite(s).get_element() not in visited:
         visited[e.opposite(s).get_element()] = s.get_element()
         self._DFS_visit(visited, e.opposite(s))
-    return visited

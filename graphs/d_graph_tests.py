@@ -29,7 +29,7 @@ def main():
   print("BFS discovery path {'destination' : 'source'} ")
   print(bfs_path)
   print("")
-  dfs_path = DG.DFS(U)
+  dfs_path = DG.DFS()
   print("DFS discovery path {'destination' : 'source'} ")
   print(dfs_path)
 
