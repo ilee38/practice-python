@@ -4,8 +4,8 @@
 """
 
 def merge(S, A, B):
-  i, j = 0, 0
-  for k in range(len(S)):
+  i, j = 0, 0               #keep two aditional indices, one for A and the other for B
+  for k in range(len(S)):   #copy the divided arrays A and B back into original S (in sorted order)
     if i > len(A)-1:    #if we reach the end of A, copy whats left on B
       S[k] = B[j]
       j += 1
@@ -21,11 +21,11 @@ def merge(S, A, B):
 
 
 def merge_sort(S):
-  if len(S) < 2:
+  if len(S) < 2:      #base case is when only 1 element in list
     return
   mid = len(S) // 2
-  A = S[0:mid]
+  A = S[0:mid]          #divide list into two halves
   B = S[mid:len(S)]
-  merge_sort(A)
+  merge_sort(A)         #recursively devide each half
   merge_sort(B)
-  merge(S, A, B)
+  merge(S, A, B)      #then merge back (in sorted order)
