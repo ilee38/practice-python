@@ -9,9 +9,10 @@ def count_ways(n):
 
   counts = {1:1, 2:2, 3:4}
   curr_sum = 0
-  for i in range(4, n+1):
-    for j in range(1,i):
-      curr_sum += counts[j]
-    counts[i] = curr_sum
-    curr_sum = 0
+  if n > 3:
+    for i in range(4, n+1):
+      for j in range(1,i):
+        curr_sum += counts[j]
+      counts[i] = curr_sum
+      curr_sum = 0
   return counts[n]
