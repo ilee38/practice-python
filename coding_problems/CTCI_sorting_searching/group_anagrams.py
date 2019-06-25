@@ -9,8 +9,8 @@ def group_anagrams(A):
   word_map = {}
   key = ''
   for word in A:
-    key = str(sorted(word))   #the sorted() built-in function returns a list, so
-    if key not in word_map:   #it needs to be converted to str in order to be hashable (for the dict)
+    key = ''.join(sorted(word))   #the sorted() built-in function returns a list, so
+    if key not in word_map:       #it needs to be converted to str in order to be hashable (for the dict)
       word_map[key] = [word]
     else:
       word_map[key].append(word)
