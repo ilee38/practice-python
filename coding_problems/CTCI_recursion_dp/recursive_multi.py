@@ -26,11 +26,11 @@ def _rec_multiply(sm, lrg, cache):
     result = _rec_multiply(lrg1, sm, cache) + _rec_multiply(lrg2, sm, cache)
     cache[(sm,lrg)] = result
     return cache[(sm,lrg)]
-  elif lrg%2 != 0 and sm%2 == 0:    #only sm is odd
+  elif lrg%2 != 0 and sm%2 == 0:    #only lrg is odd
     half = _rec_multiply(lrg, sm//2, cache)
     cache[(sm,lrg)] = half + half
     return cache[(sm,lrg)]
-  else:                       #only lrg is odd
+  else:                       #only sm is odd
     half = _rec_multiply(lrg//2, sm, cache)
     cache[(sm,lrg)] = half + half
     return cache[(sm,lrg)]
