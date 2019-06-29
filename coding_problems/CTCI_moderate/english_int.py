@@ -17,10 +17,10 @@ def english_int(num):
             '9': ['nine', 'ninety', 'nine hundred']
             }
   final = []
-  if num < 0:
-    final.append('negative')
-
   str_num = str(num)
+  if num < 0:
+    str_num = str_num[1:]
+
   if len(str_num) <= 3:
     final.append(process_chunk(str_num, lookup))
   else:
@@ -31,7 +31,10 @@ def english_int(num):
     for i in range(div_times):
       final.append(process_chunk(str_num[remainder:remainder+3], lookup))
       remainder += 3
-  print_num(final)
+  if num < 0:
+    print('negative ' + print_num(final))
+  else:
+    print(print_num(final))
 
 
 def process_chunk(str_num, lookup):
@@ -55,7 +58,7 @@ def print_num(final):
   eng_int = ''
   for i in range(len(final)):
     eng_int += final[i]+' '+magnitude[len(final)-i]+' '
-  print(eng_int)
+  return eng_int
 
 
 
