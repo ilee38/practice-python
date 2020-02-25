@@ -9,4 +9,4 @@ Subdirectory names correspond to the name of the chapter in the book.
 Added new folder for implementations of problems from [Google's Tech Dev Guide](https://techdevguide.withgoogle.com/).
 
 ### 02/21/20 Update:
-Added new folder for implementations of problems from [Project Euler](https://projecteuler.net/).
+Added new folder for implementations of Math/coding problems.
