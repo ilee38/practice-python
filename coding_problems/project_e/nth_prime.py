@@ -8,12 +8,12 @@
 
 
 def nth_prime(nth):
-  """ Find the 10,001st prime by trial and error, using the Sieve of Eratosthenes
+  """ Find the nth prime by trial and error, using the Sieve of Eratosthenes
       with an increasingly large size of n (where n is the limit). I.e. the
       Sieve of Eratosthenes finds all prime numbers up to a given limit n.
 
-      Start with n = (10,001 * 2) and count how many primes are found. If
-      less than 10,001 then increase n by a factor of 1 and start again:
+      Start with n = (nth * 2) and count how many primes are found. If
+      less than "nth" then increase n by a factor of 1 and start again:
           - use a bytearray initialized with 1's
           - set each non-prime to 0 (during the sieve of eratosthenes)
           - after finishing running the sieve of eratosthenes:
