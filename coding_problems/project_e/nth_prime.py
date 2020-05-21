@@ -46,9 +46,10 @@ def count_primes(primes, nth):
 
 
 def main():
-    nth = 10000
-    my_prime, total_primes = nth_prime(nth)
-    print("Found {} prime numbers. The nth = {} prime is: {}".format(total_primes, nth, my_prime))
+    # Get the 20,000th prime number
+    N_TH = 20000
+    my_prime, total_primes = nth_prime(N_TH)
+    print("Found {} prime numbers. The n-th = {} prime is: {}".format(total_primes, N_TH, my_prime))
 
 
 if __name__ == "__main__":
