@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-def nth_prime(nth):
+def get_nth_prime(nth):
   """ Returns the n-th prime number
   """
   total_primes = 0
@@ -12,7 +12,7 @@ def nth_prime(nth):
     size_factor += 1
     s = (nth * size_factor)
   nth_prime = count_primes(primes, nth)
-  return (nth_prime, total_primes)
+  return nth_prime
 
 
 def get_primes(s):
@@ -48,8 +48,8 @@ def count_primes(primes, nth):
 def main():
     # Get the 20,000th prime number
     N_TH = 20000
-    my_prime, total_primes = nth_prime(N_TH)
-    print("Found {} prime numbers. The n-th = {} prime is: {}".format(total_primes, N_TH, my_prime))
+    nth_prime = get_nth_prime(N_TH)
+    print("The {}-th prime is: {}".format(N_TH, nth_prime))
 
 
 if __name__ == "__main__":
