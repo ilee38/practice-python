@@ -37,6 +37,9 @@ def get_primes(s):
 def count_primes(primes, nth):
   """ Returns the n-th prime represented by the index of the n-th "1" in the
       bytearray.
+
+      Can this be improved by puting the actual primes in a list? See problem 12
+      in project Euler. (then there's no need to count, jus access the number directly)
   """
   count = 0
   for k in range(2, len(primes)):
