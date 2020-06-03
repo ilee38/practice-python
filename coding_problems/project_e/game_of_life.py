@@ -7,16 +7,23 @@ import copy
 def game_of_life(grid_size, ticks):
   curr_grid = [[0]*grid_size for _ in range(grid_size)]
   next_grid = [[0]*grid_size for _ in range(grid_size)]
-  alive = False
-  field_sum = 0
   init_setup(curr_grid)
   for tick in range(ticks):
-    for r in range(grid_size):
-      for c in range(grid_size):
+    next_grid = next_state(curr_grid, next_grid)
+    curr_grid = copy.deepcopy(next_grid)
+    print_grid(curr_grid)
+
+
+def next_state(curr_grid, next_grid):
+  size = len(curr_grid)
+  alive = False
+  field_sum = 0
+  for r in range(size):
+      for c in range(size):
         if r > 0:
           field_sum += sum(curr_grid[r-1][c-1:c+2])
         field_sum += sum(curr_grid[r][c-1:c+2])
-        if r < grid_size-1:
+        if r < size-1:
           field_sum += sum(curr_grid[r+1][c-1:c+2])
         if curr_grid[r][c] == 1:
           alive = True
@@ -29,8 +36,7 @@ def game_of_life(grid_size, ticks):
           next_grid[r][c] = 0
         field_sum = 0
         alive = False
-    curr_grid = copy.deepcopy(next_grid)
-    print_grid(curr_grid)
+  return next_grid
 
 
 def init_setup(curr_grid):
