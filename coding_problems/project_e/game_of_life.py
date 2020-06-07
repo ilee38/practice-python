@@ -57,6 +57,8 @@ def print_grid(grid):
 
 
 def main():
+  """ Start Game of Life with a 10x10 grid, and run it for 20 periods
+  """
   game_of_life(10, 20)
 
 
