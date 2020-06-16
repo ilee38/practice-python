@@ -111,9 +111,9 @@ def get_digits():
   """ Same strategy as with binary adders (digital circuits):
       - start from right to left adding the columns
       - the result digit for each column is the sum of the column % 10 (base 10)
-      - then save the carry (sum of the column integer divided by 10 (again, base 10))
+      - then save the carry (sum of the column integer-divided by 10 (again, base 10))
       - on the next column, always add the carry, and update it
-      - after the last column is added, just include the carry a the front
+      - after the last column is added, just include the carry at the front
   """
   result = deque()
   curr_sum = 0
