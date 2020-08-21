@@ -28,8 +28,7 @@ def indexof_fibonacci():
 	matrix = {1: 1, 2: 1}
 	n = 3
 	while True:
-		if n not in matrix:
-			matrix[n] = matrix[n-2] + matrix[n-1]
+		matrix[n] = matrix[n-2] + matrix[n-1]
 		if len(str(matrix[n])) == 1000:
 			return n
 		n += 1
