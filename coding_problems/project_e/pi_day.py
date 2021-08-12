@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+
 from decimal import Decimal as Dec, getcontext as gc
 
-def PI(maxK = 317, prec = 4501, disp = 4500):  # Parameter defaults chosen to gain 1000+ digits within a few seconds
+def PI(maxK = 317, prec = 15001, disp = 15000):  # Parameter defaults chosen to gain 1000+ digits within a few seconds
     gc().prec = prec
     K, M, L, X, S = 6, 1, 13591409, 1, 13591409
     for k in range(1, maxK + 1):
